@@ -5,17 +5,15 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviourPun
 {
-    public void Start()
-    {
-        Debug.Log("La bala fue instanciada");
-    }
+    [SerializeField] private int damage = 1;
+
     public void OnTriggerEnter(Collider collision)
     {
-        
-        if(collision.gameObject.GetComponent<IDestructable>() != null)
+
+        if (collision.gameObject.GetComponent<IDestructable>() != null)
         {
-            Debug.Log("Mueree");
-            collision.gameObject.GetComponent<IDestructable>().ReceiveDamage(1);
+            GameObject objectHit = collision.gameObject;
+            objectHit.GetComponent<IDestructable>().ReceiveDamage(damage);
         }
         Destroy(gameObject);
     }

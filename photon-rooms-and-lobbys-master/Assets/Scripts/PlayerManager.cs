@@ -8,12 +8,12 @@ public class PlayerManager : MonoBehaviourPun, IPunObservable, IPunInstantiateMa
 {
     public static PlayerManager LocalPlayerInstance = null;
     bool alive = true;
-    public GameObject myTarget;    
-    Vector3 myPosition, myRotation;
-    float speed = 20;
     int playerNumber, health = 1;
-    public string myName;
-    [SerializeField]TextMeshProUGUI nameText;
+    public GameObject myTarget;
+    Vector3 myPosition, myRotation;
+    [HideInInspector] public string myName;
+    [SerializeField] TextMeshProUGUI nameText;
+    Color textColor = new Color(0, 0.8f, 0.2f);
 
     public void Awake()
     {
@@ -29,32 +29,37 @@ public class PlayerManager : MonoBehaviourPun, IPunObservable, IPunInstantiateMa
         playerNumber = (byte)instantiationData[0];
         myName = (string)instantiationData[1];
         nameText.text = myName;
-    }   
-
-    [PunRPC]
-    public void UpdateHealth(int _health)
-    {
-        Debug.Log("Ouch");
         if (photonView.IsMine)
         {
-            health -= _health;
-            if (health <= 0)
-            {
-                photonView.RPC("Die", RpcTarget.All);
-            }
-        }     
+            nameText.color = textColor;
+        }
+    }
+    
+    public void UpdateHealth(int _health)
+    {
+        health -= _health;
+        if (health <= 0)
+        {
+            photonView.RPC("Dead", RpcTarget.All);
+        }
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-
+        if (stream.IsWriting)
+        {
+            stream.SendNext(this.health);
+        }
+        else
+        {
+            this.health = (int)stream.ReceiveNext();
+        }
     }
 
     [PunRPC]
-    public void Die()
+    public void Dead()
     {
         GameController.Instance.PlayerDeath(this);
-        Debug.Log("Die");
     }
 
 }

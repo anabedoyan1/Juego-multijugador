@@ -7,7 +7,7 @@ public class Target : MonoBehaviour, IDestructable
 {
     public void ReceiveDamage(int _health)
     {
-        Debug.Log("Daño");
-        PlayerManager.LocalPlayerInstance.photonView.RPC("UpdateHealth", RpcTarget.All, _health);
+        PlayerManager player = gameObject.GetComponentInParent<PlayerManager>();
+        player.UpdateHealth(_health);
     }
 }
