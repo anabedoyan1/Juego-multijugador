@@ -123,3 +123,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e15baf289d483a4691c094534590a26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
+  tankOwner: {fileID: 0}

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6873177454888504804}
   m_Layer: 0
   m_Name: Target
-  m_TagString: Untagged
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e50e1dae40d0f24c9db0edcacf13872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myPlayer: {fileID: 1013588110809959665}
 --- !u!1 &1013588110456692221
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,6 +360,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 641b1d9f1c31bc94495f8703c776483a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alive: 1
+  playerNumber: 0
+  health: 1
   myTarget: {fileID: 1013588110086052415}
   myName: 
   nameText: {fileID: 552947197328509334}

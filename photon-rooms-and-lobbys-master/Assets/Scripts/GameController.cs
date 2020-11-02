@@ -9,6 +9,7 @@ public class GameController : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject tankGameObject;
     [SerializeField] GameObject[] spawnPositions = new GameObject[4];
     GameObject playerRefPosition, playerRotation;
+    int remainingPlayers = 0;
     
 
     public void Awake()
@@ -32,6 +33,7 @@ public class GameController : MonoBehaviourPunCallbacks
             };
             PhotonNetwork.Instantiate("tank", AssignPosition().transform.position, AssignPosition().transform.rotation, 0, myCustomInitData);
         }
+        remainingPlayers = PhotonNetwork.PlayerList.Length;
     }
 
     public GameObject AssignPosition()
@@ -42,6 +44,7 @@ public class GameController : MonoBehaviourPunCallbacks
 
     public void PlayerDeath(PlayerManager _playerManager)
     {
+        Debug.Log("Parte 2: GameController");
         _playerManager.gameObject.SetActive(false);
     }
 }

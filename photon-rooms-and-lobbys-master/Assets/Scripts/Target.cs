@@ -5,9 +5,13 @@ using UnityEngine;
 
 public class Target : MonoBehaviour, IDestructable
 {
-    public void ReceiveDamage(int _health)
+    [SerializeField] GameObject myPlayer;
+    public void ReceiveDamage(int _damage)
     {
-        PlayerManager player = gameObject.GetComponentInParent<PlayerManager>();
-        player.photonView.RPC("UpdateHealth", RpcTarget.All, _health);
+        if (gameObject.GetComponentInParent<PhotonView>().IsMine)
+        {
+            myPlayer.GetComponent<PlayerManager>().UpdateHealth(_damage);
+        }
+        
     }
 }

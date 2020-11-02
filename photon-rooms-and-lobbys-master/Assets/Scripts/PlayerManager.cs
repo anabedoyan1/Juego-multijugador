@@ -7,8 +7,8 @@ using TMPro;
 public class PlayerManager : MonoBehaviourPun, IPunObservable, IPunInstantiateMagicCallback
 {
     public static PlayerManager LocalPlayerInstance = null;
-    bool alive = true;
-    int playerNumber, health = 1;
+    public bool alive = true;
+    public int playerNumber, health = 1;
     public GameObject myTarget;
     Vector3 myPosition, myRotation;
     [HideInInspector] public string myName;
@@ -22,7 +22,7 @@ public class PlayerManager : MonoBehaviourPun, IPunObservable, IPunInstantiateMa
         else
             Destroy(this);
     }
-
+        
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
         object[] instantiationData = info.photonView.InstantiationData;
@@ -34,11 +34,10 @@ public class PlayerManager : MonoBehaviourPun, IPunObservable, IPunInstantiateMa
             nameText.color = textColor;
         }
     }
-
-    [PunRPC]
-    public void UpdateHealth(int _health)
-    {
-        health -= _health;
+    
+    public void UpdateHealth(int _damage)
+    {        
+        health -= _damage;
         if (health <= 0)
         {
             photonView.RPC("Dead", RpcTarget.All);
@@ -50,18 +49,20 @@ public class PlayerManager : MonoBehaviourPun, IPunObservable, IPunInstantiateMa
         if (stream.IsWriting)
         {
             stream.SendNext(this.health);
+            stream.SendNext(this.alive);
         }
         else
         {
             this.health = (int)stream.ReceiveNext();
-        }
+            this.alive = (bool)stream.ReceiveNext();            
+        }        
     }
 
     [PunRPC]
     public void Dead()
-    {
-        //gameObject.SetActive(false);
+    {        
+        Debug.Log("Parte 1: Dead");
         GameController.Instance.PlayerDeath(this);
-    }
+    }    
 
 }
