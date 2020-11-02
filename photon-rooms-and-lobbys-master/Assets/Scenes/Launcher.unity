@@ -1776,7 +1776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d14c990192061d43b457f4d3296bf8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPlayers: 4
+  maxPlayers: 2
   RoomsContainer: {fileID: 1677349839}
   prefabRoomItem: {fileID: 3368085114843876958, guid: 3fe6991360752af49b891bf7fc0cdaaa,
     type: 3}

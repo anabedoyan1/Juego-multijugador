@@ -8,7 +8,6 @@ public class GameController : MonoBehaviourPunCallbacks
     public static GameController Instance = null;
     [SerializeField] private GameObject tankGameObject;
     [SerializeField] GameObject[] spawnPositions = new GameObject[4];
-    int playerNum;
     GameObject playerRefPosition, playerRotation;
     
 
@@ -23,8 +22,6 @@ public class GameController : MonoBehaviourPunCallbacks
 
     public void Start()
     {
-        playerNum = RoomCtrl.Instance.LocalPlayerNum;
-        Debug.Log(playerNum);
         if(PlayerManager.LocalPlayerInstance == null)
         {
             AssignPosition();
@@ -39,7 +36,7 @@ public class GameController : MonoBehaviourPunCallbacks
 
     public GameObject AssignPosition()
     {
-        playerRefPosition = spawnPositions[playerNum-1];
+        playerRefPosition = spawnPositions[(byte)PhotonNetwork.LocalPlayer.CustomProperties["nmr"] - 1];
         return playerRefPosition;
     }
 

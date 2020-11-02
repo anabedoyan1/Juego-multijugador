@@ -27,6 +27,7 @@ public class Weapon : MonoBehaviourPun
         if (canShoot)
         {
             GameObject bulletClon = Instantiate(bulletRef, positionRef.transform.position, weapon.transform.rotation);
+            bulletClon.GetComponent<Bullet>().tankOwner = gameObject.GetComponent<GameObject>();
             Rigidbody bulletBody = bulletClon.GetComponent<Rigidbody>();
             bulletBody.AddForce(transform.forward * bulletForce, ForceMode.Impulse);
         }

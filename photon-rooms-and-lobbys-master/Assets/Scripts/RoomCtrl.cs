@@ -32,9 +32,6 @@ public class RoomCtrl : MonoBehaviourPunCallbacks
             Instance = this;
         else
             Destroy(this);
-
-        DontDestroyOnLoad(gameObject);
-
     }    
     #region Photon Callbacks
 
