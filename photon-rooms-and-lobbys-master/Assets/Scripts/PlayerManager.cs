@@ -34,7 +34,8 @@ public class PlayerManager : MonoBehaviourPun, IPunObservable, IPunInstantiateMa
             nameText.color = textColor;
         }
     }
-    
+
+    [PunRPC]
     public void UpdateHealth(int _health)
     {
         health -= _health;
@@ -59,6 +60,7 @@ public class PlayerManager : MonoBehaviourPun, IPunObservable, IPunInstantiateMa
     [PunRPC]
     public void Dead()
     {
+        //gameObject.SetActive(false);
         GameController.Instance.PlayerDeath(this);
     }
 

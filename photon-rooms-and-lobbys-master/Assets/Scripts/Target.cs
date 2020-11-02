@@ -8,6 +8,6 @@ public class Target : MonoBehaviour, IDestructable
     public void ReceiveDamage(int _health)
     {
         PlayerManager player = gameObject.GetComponentInParent<PlayerManager>();
-        player.UpdateHealth(_health);
+        player.photonView.RPC("UpdateHealth", RpcTarget.All, _health);
     }
 }
