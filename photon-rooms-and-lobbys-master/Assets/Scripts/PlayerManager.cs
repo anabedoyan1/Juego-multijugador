@@ -14,15 +14,7 @@ public class PlayerManager : MonoBehaviourPun, IPunObservable, IPunInstantiateMa
     [HideInInspector] public string myName;
     [SerializeField] TextMeshProUGUI nameText;
     Color textColor = new Color(0, 0.8f, 0.2f);
-
-    public void Awake()
-    {
-        if (LocalPlayerInstance == null)
-            LocalPlayerInstance = this;
-        else
-            Destroy(this);
-    }
-        
+                
     public void OnPhotonInstantiate(PhotonMessageInfo info)
     {
         object[] instantiationData = info.photonView.InstantiationData;

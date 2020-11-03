@@ -76,7 +76,7 @@ public class RoomCtrl : MonoBehaviourPunCallbacks
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        ReassingPlayerNumber((byte)otherPlayer.CustomProperties["nmr"]);
+        ReassiningPlayerNumber((byte)otherPlayer.CustomProperties["nmr"]);
         UpdateRoomData();
         RemovePlayerFromList();
         FillPlayerList();
@@ -118,7 +118,7 @@ public class RoomCtrl : MonoBehaviourPunCallbacks
         
     }
 
-    public void ReassingPlayerNumber(byte _removedPlayerNumber)
+    public void ReassiningPlayerNumber(byte _removedPlayerNumber)
     {
         byte myPlayerNumber = (byte) PhotonNetwork.LocalPlayer.CustomProperties["nmr"];
         if (myPlayerNumber > _removedPlayerNumber)
