@@ -25,6 +25,7 @@ public class PlayerManager : MonoBehaviourPun, IPunObservable, IPunInstantiateMa
         {
             nameText.color = textColor;
         }
+        GameController.Instance.playersInGame.Add(this);
     }
     
     public void UpdateHealth(int _damage)

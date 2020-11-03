@@ -20,30 +20,7 @@ public class Bullet : MonoBehaviour
         {            
             collision.gameObject.GetComponent<IDestructable>().ReceiveDamage(damage);            
         }
-
-        //if (collision.CompareTag("Target"))
-        //{
-
-        //}
-
-        //if(collision.gameObject.GetComponent<PlayerManager>() != null)
-        //{
-        //    GameObject playerHit = collision.gameObject;
-        //    playerHit.GetComponentInParent<PlayerManager>().photonView.RPC("Dead", RpcTarget.All);
-
-        //    //if(collision.gameObject.GetComponent<PhotonView>().IsMine)
-        //    //collision.gameObject.GetComponent<PlayerManager>().UpdateHealth(damage);
-        //}
-
-        //if (collision.gameObject.GetComponent<IDestructable>() != null)
-        //{
-        //    Debug.Log(collision.gameObject.GetComponentInParent<PhotonView>().Owner.NickName);
-        //    PhotonView PVHit = collision.gameObject.GetComponentInParent<PhotonView>();
-        //    PVHit.RPC("Dead", RpcTarget.All);
-        //    //PlayerManager player = PVHit.gameObject.GetComponent<PlayerManager>();
-        //    //Debug.Log(player);
-        //    //collision.gameObject.GetComponent<IDestructable>().ReceiveDamage(damage);            
-        //}
+        
         if (collision.gameObject != null && canDestroy)
         {
             Destroy(gameObject);
